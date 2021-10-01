@@ -1,0 +1,107 @@
+buildscript {
+	ext {
+		springbootVersion = '2.5.5'
+		kotlinVersion = '1.5.30'
+		detektVersion = '1.18.0'
+
+		retrofitVersion = '2.9.0'
+		okhttp3Version = '4.9.1'
+
+		// testing
+		kotestVersion = '4.6.2'
+	}
+}
+
+plugins {
+	id("org.springframework.boot") version "$springbootVersion"
+	id("io.spring.dependency-management") version "1.0.11.RELEASE"
+
+	// spring & all-open
+	id "org.jetbrains.kotlin.plugin.spring" version "1.5.31"
+
+	// Apply the Kotlin JVM plugin to add support for Kotlin.
+	id 'org.jetbrains.kotlin.jvm' version "$kotlinVersion"
+	id 'io.gitlab.arturbosch.detekt' version "$detektVersion"
+}
+
+group = "com.hatz"
+version = "0.0.1-SNAPSHOT"
+java.sourceCompatibility = JavaVersion.VERSION_11
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation "org.springframework.boot:spring-boot-starter-web:${springbootVersion}"
+	implementation "com.fasterxml.jackson.module:jackson-module-kotlin"
+	implementation "org.jetbrains.kotlin:kotlin-reflect"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
+	implementation "org.springframework.boot:spring-boot-starter-actuator:${springbootVersion}"
+
+
+
+
+
+	//retrofit
+	implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+	implementation "com.squareup.retrofit2:converter-jackson:$retrofitVersion"
+
+	implementation "com.squareup.okhttp3:okhttp:$okhttp3Version"
+	implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3Version"
+
+
+
+
+	// testing
+	testImplementation "org.springframework.boot:spring-boot-starter-test"
+	testImplementation "org.jetbrains.kotlin:kotlin-test:$kotlinVersion"
+	testImplementation "io.mockk:mockk:1.12.0"
+	testImplementation "org.amshove.kluent:kluent:1.68"
+
+	// Kotest Libraries
+	testImplementation "io.kotest:kotest-runner-junit5-jvm:$kotestVersion"
+	testImplementation "io.kotest:kotest-assertions-core-jvm:$kotestVersion"
+	testImplementation "io.kotest:kotest-property-jvm:$kotestVersion"
+}
+
+// kotlin adds Kt to the end of compiled classes
+//mainClassName = 'com.hatz.githubconnector.GithubConnectorApplicationKt'
+
+
+compileKotlin {
+	kotlinOptions.jvmTarget = "11"
+}
+compileTestKotlin {
+	kotlinOptions.jvmTarget = "11"
+}
+
+/**
+ * Static Analysis & Testing Stuff
+ */
+
+detekt {
+	toolVersion = "$detektVersion"
+	config = project.files("${project.rootDir}/config/detekt/detekt.yml")
+	source = project.files("src") // default path is "src/main/kotlin" and "src/main/java"
+	buildUponDefaultConfig = true
+}
+
+sourceSets {
+	test {
+		kotlin.srcDirs = ['src/test/unit/kotlin', 'src/test/functional/kotlin']
+	}
+}
+
+// junit5
+test {
+	useJUnitPlatform()
+}
+
+// test execution logging
+tasks.withType(Test) {
+	testLogging {
+		events 'started', 'passed', 'failed', 'skipped'
+	}
+}
