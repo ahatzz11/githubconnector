@@ -10,7 +10,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import retrofit2.Retrofit
-import retrofit2.converter.jackson.JacksonConverterFactory;
+import retrofit2.converter.jackson.JacksonConverterFactory
 
 @Configuration
 class AppConfig {
@@ -33,8 +33,7 @@ class AppConfig {
             httpLoggingInterceptor.apply { httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.HEADERS };
 
         val client: OkHttpClient = OkHttpClient.Builder()
-            // disabled logger
-             .addInterceptor(interceptor)
+            .addInterceptor(interceptor)
             .build();
 
 

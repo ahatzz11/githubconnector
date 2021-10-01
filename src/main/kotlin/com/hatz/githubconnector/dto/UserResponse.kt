@@ -43,7 +43,10 @@ fun fromGithubUserInformation(githubUser: GithubUserResponse, githubRepos: List<
         geoLocation = githubUser.location,
         email = githubUser.email,
         url = githubUser.htmlUrl,
-        createdAt = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").withZone( ZoneId.of("UTC")).format(githubUser.createdAt),
+        createdAt = DateTimeFormatter
+            .ofPattern("yyyy-MM-dd HH:mm:ss")
+            .withZone( ZoneId.of("UTC"))
+            .format(githubUser.createdAt),
         repos = githubRepos.map { repo -> fromGithubRepoInformation(repo) }
     )
 }

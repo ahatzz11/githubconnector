@@ -14,7 +14,6 @@ import okhttp3.ResponseBody.Companion.toResponseBody
 import org.amshove.kluent.shouldBe
 import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldContain
-import retrofit2.Call
 import retrofit2.Response
 import java.time.Instant
 import java.util.concurrent.TimeUnit
@@ -22,8 +21,6 @@ import java.util.concurrent.TimeUnit
 class GithubServiceSpec : FunSpec({
 
     val githubApi = mockk<GithubApi>()
-    val userCall = mockk<Call<GithubUserResponse>>()
-    val repoCall = mockk<Call<List<GithubRepoResponse>>>()
     val githubService = GithubService(githubApi)
 
     afterTest { clearAllMocks() }
@@ -59,9 +56,7 @@ class GithubServiceSpec : FunSpec({
         // given a username
         val username: String = "octooctocat"
 
-        every { githubApi.getGithubUser(username) } returns userCall
-
-        every { userCall.execute() } returns
+        every { githubApi.getGithubUser(username).execute() } returns
             Response.error(404, "{\"message\": \"Not Found\"}".toResponseBody())
 
         // when api call is made
