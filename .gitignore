@@ -1,0 +1,29 @@
+### Stuff ###
+.DS_STORE
+out/*
+
+### Gradle ###
+.gradle/
+build/
+
+lib/*
+
+cache/
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
