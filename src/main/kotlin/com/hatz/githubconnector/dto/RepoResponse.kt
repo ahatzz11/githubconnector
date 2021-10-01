@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.hatz.githubconnector.dto.github.GithubRepoResponse
 
 data class RepoResponse(
-
     @JsonProperty("name")
     val name: String,
 

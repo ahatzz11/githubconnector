@@ -45,7 +45,7 @@ fun fromGithubUserInformation(githubUser: GithubUserResponse, githubRepos: List<
         url = githubUser.htmlUrl,
         createdAt = DateTimeFormatter
             .ofPattern("yyyy-MM-dd HH:mm:ss")
-            .withZone( ZoneId.of("UTC"))
+            .withZone(ZoneId.of("UTC"))
             .format(githubUser.createdAt),
         repos = githubRepos.map { repo -> fromGithubRepoInformation(repo) }
     )

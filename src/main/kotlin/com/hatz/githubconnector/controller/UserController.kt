@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("github_connector/v1/users")
 class UserController(val userService: UserService) {
 
+    /**
+     * GET controller for a single user
+     *
+     * @param username - the user to get
+     */
     @GetMapping("{username}")
     @ResponseStatus(HttpStatus.OK)
     fun getGithubUserInformation(

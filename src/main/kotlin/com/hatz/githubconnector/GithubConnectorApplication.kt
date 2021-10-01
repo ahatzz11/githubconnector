@@ -8,5 +8,5 @@ class GithubConnectorApplication
 
 @SuppressWarnings("SpreadOperator")
 fun main(args: Array<String>) {
-	runApplication<GithubConnectorApplication>(*args)
+    runApplication<GithubConnectorApplication>(*args)
 }

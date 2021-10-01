@@ -13,5 +13,4 @@ interface GithubApi {
 
     @GET("users/{username}/repos")
     fun getRepos(@Path("username") username: String): Call<List<GithubRepoResponse>>
-
 }
