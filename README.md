@@ -72,8 +72,9 @@ Example Response:
 
 - I would talk with the client about receiving the `created_at` field in the standard ISO-8601 datetime format. 
 - Additionally, the requested datetime format by the client doesn't have any time zone information. Since this is a bad pattern, I will be making the assumption they want UTC time. Unfortunately, their requested pattern has no way to tell them this.
+- I would also work with the client on consistent naming, they want to send in a `username` but in the response they would like a `user_name`. Normally username is a single word, so I'd advise them to use `username`.
 - I personally didn't run into any issues with the default github rate-limiting.
-- The initial build took me roughly 2 hours, including some debugging. I spent another 30 minutes writing some test cases, and a final 30 minutes doing some cleanup, documentation, and this writeup. 
+- The initial build took me roughly 2 hours, including some debugging. I spent another 30 minutes writing some test cases, and a final 30 minutes doing some cleanup, documentation, and this writeup.
 
 ### Future Improvements
 - Add a proper auth solution to avoid rate limiting. This could be done by adding parameters to our API call, which would be used to generate a github auth token. This token would then be sent along during the github API call.
