@@ -33,12 +33,14 @@ repositories {
 }
 
 dependencies {
+    // spring
     implementation "org.springframework.boot:spring-boot-starter-web:${springbootVersion}"
+    implementation "org.springframework.boot:spring-boot-starter-actuator:${springbootVersion}"
     implementation "com.fasterxml.jackson.module:jackson-module-kotlin"
+    
+    // kotlin
     implementation "org.jetbrains.kotlin:kotlin-reflect"
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
-
-    implementation "org.springframework.boot:spring-boot-starter-actuator:${springbootVersion}"
 
     //retrofit
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
